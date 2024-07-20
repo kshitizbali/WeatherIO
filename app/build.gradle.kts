@@ -26,12 +26,14 @@ android {
 
     val apiKey = gradleLocalProperties(rootDir).getProperty("API_KEY")
     val baseUrl = gradleLocalProperties(rootDir).getProperty("BASE_URL")
+    val weatherIOPref = gradleLocalProperties(rootDir).getProperty("WEATHER_IO_PREF")
 
     buildTypes {
         release {
             isMinifyEnabled = false
             buildConfigField("String", "API_KEY", "\"$apiKey\"")
             buildConfigField("String", "BASE_URL", "\"$baseUrl\"")
+            buildConfigField("String", "WEATHER_IO_PREF", "\"$weatherIOPref\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -41,6 +43,7 @@ android {
             isMinifyEnabled = false
             buildConfigField("String", "API_KEY", "\"$apiKey\"")
             buildConfigField("String", "BASE_URL", "\"$baseUrl\"")
+            buildConfigField("String", "WEATHER_IO_PREF", "\"$weatherIOPref\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
