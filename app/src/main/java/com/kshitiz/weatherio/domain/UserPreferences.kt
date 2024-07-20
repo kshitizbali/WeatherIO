@@ -10,5 +10,5 @@ interface UserPreferences {
 
     //fun getStringFromPreferences(): String?
 
-    fun getLastLocation(): String?
+    fun getLastLocation(): String
 }

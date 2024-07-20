@@ -17,7 +17,7 @@ class UserPreferencesImpl @Inject constructor(
         }
     }
 
-    override fun getLastLocation(): String? {
-        return preferences.getString(key, "Palo Alto")
+    override fun getLastLocation(): String {
+        return preferences.getString(key, "Palo Alto") ?: "Palo Alto"
     }
 }
