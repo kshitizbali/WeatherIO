@@ -1,4 +1,4 @@
-package com.kshitiz.weatherio.ui.theme
+package com.kshitiz.weatherio.presentation.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

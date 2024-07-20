@@ -1,4 +1,4 @@
-package com.kshitiz.weatherio.ui.theme
+package com.kshitiz.weatherio.presentation.ui.theme
 
 import android.app.Activity
 import android.os.Build
