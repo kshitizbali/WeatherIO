@@ -6,9 +6,9 @@ import androidx.preference.PreferenceManager
 interface UserPreferences {
     //fun saveStringToPreferences()
 
-    fun saveLastLocation()
+    fun saveLastLocation(location: String)
 
     //fun getStringFromPreferences(): String?
 
-    fun getLastLocation(context: Context): String?
+    fun getLastLocation(): String?
 }
