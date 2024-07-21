@@ -3,6 +3,10 @@ package com.kshitiz.weatherio.domain.model
 import androidx.annotation.DrawableRes
 import com.kshitiz.weatherio.R
 
+/**
+ * Sealed class to organize weather type along with its accompanying
+ * icon and description.
+ */
 sealed class WeatherType(
     val weatherDesc: String,
     @DrawableRes val iconRes: Int

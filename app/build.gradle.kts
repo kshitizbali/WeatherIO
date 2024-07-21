@@ -56,6 +56,7 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+        freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
     }
     buildFeatures {
         compose = true
@@ -111,8 +112,6 @@ dependencies {
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
-    implementation("com.squareup.moshi:moshi:1.12.0")
-    implementation("com.squareup.moshi:moshi-kotlin:1.12.0")
     implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.3")
     implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.3")
 
@@ -121,4 +120,9 @@ dependencies {
     implementation("androidx.preference:preference-ktx:1.2.1")
 
     implementation("com.google.android.gms:play-services-location:21.3.0")
+
+    // For Kotlin
+    implementation("androidx.work:work-runtime-ktx:2.7.1")
+
+    implementation("io.coil-kt:coil-compose:1.4.0")
 }

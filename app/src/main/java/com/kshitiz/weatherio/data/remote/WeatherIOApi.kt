@@ -6,6 +6,9 @@ import com.kshitiz.weatherio.data.dto.WeatherMainDto
 import retrofit2.http.GET
 import retrofit2.http.Query
 
+/**
+ * Weather Api interface
+ */
 interface WeatherIOApi {
     /**
      * Weather forecast by city

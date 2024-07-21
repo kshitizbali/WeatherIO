@@ -24,12 +24,16 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.rememberImagePainter
 import com.kshitiz.weatherio.R
 import java.time.format.DateTimeFormatter
 import kotlin.math.roundToInt
 
 /**
- * Card to display the current weather information.
+ * Composable UI Component Card to display the current weather information.
+ * @param state A UI state class containing the weather info.
+ * @param backgroundColor Specifies the background color of the component.
+ * @param modifier A modifier obj to customize the component.
  */
 @Composable
 fun WeatherCard(

@@ -5,10 +5,19 @@ import android.content.SharedPreferences
 import com.kshitiz.weatherio.domain.UserPreferences
 import javax.inject.Inject
 
+/**
+ * User preferences implementation class.
+ * Injected constructor params
+ * @param preferences Preferences to use the SharedPreferences built in method to save
+ * and fetch data.
+ */
 class UserPreferencesImpl @Inject constructor(
     private val preferences: SharedPreferences
 ) : UserPreferences {
     val key = "last_location"
+    /**
+     * Save the last location of the user session in encrypted preferences.
+     */
     override fun saveLastLocation(location: String) {
 
         with(preferences.edit()) {
@@ -16,8 +25,10 @@ class UserPreferencesImpl @Inject constructor(
             commit()
         }
     }
-
-    override fun getLastLocation(): String {
-        return preferences.getString(key, "Palo Alto") ?: "Palo Alto"
+    /**
+     * Fetches the last location saved in the preferences.
+     */
+    override fun getLastLocation(): String? {
+        return preferences.getString(key, "")
     }
 }

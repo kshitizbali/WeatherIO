@@ -8,6 +8,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 
+
+/**
+ * A composable version to check internet connection for composable functions.
+ */
 @Composable
 fun CheckInternetConnectivity() {
     val isConnected = remember { mutableStateOf(false) }
@@ -28,4 +32,23 @@ fun CheckInternetConnectivity() {
         activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
         else -> false
     }
+}
+
+/**
+ * Helper method to check internet connectivity.
+ * @param context Current context.
+ */
+fun checkInternetAvailability(context: Context): Boolean {
+    val connectivityManager =
+        context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+    val networkCapabilities =
+        connectivityManager.activeNetwork ?: return false
+
+    val activeNetwork =
+        connectivityManager.getNetworkCapabilities(networkCapabilities) ?: return false
+
+    return activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
+            activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ||
+            activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)
 }

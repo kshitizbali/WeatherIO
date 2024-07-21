@@ -14,7 +14,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 /**
- * Display the weather forecast for tomorrow.
+ * Composable UI component to display the weather forecast for tomorrow.
+ * @param state A UI state containing the weather data.
+ * @param modifier A modifier obj to customise the component.
  */
 @Composable
 fun WeatherForecast(
