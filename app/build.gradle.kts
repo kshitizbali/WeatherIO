@@ -27,6 +27,7 @@ android {
     val apiKey = gradleLocalProperties(rootDir).getProperty("API_KEY")
     val baseUrl = gradleLocalProperties(rootDir).getProperty("BASE_URL")
     val weatherIOPref = gradleLocalProperties(rootDir).getProperty("WEATHER_IO_PREF")
+    val iconUrl = gradleLocalProperties(rootDir).getProperty("ICON_URL")
 
     buildTypes {
         release {
@@ -34,6 +35,7 @@ android {
             buildConfigField("String", "API_KEY", "\"$apiKey\"")
             buildConfigField("String", "BASE_URL", "\"$baseUrl\"")
             buildConfigField("String", "WEATHER_IO_PREF", "\"$weatherIOPref\"")
+            buildConfigField("String", "ICON_URL", "\"$iconUrl\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -44,6 +46,7 @@ android {
             buildConfigField("String", "API_KEY", "\"$apiKey\"")
             buildConfigField("String", "BASE_URL", "\"$baseUrl\"")
             buildConfigField("String", "WEATHER_IO_PREF", "\"$weatherIOPref\"")
+            buildConfigField("String", "ICON_URL", "\"$iconUrl\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -56,6 +59,7 @@ android {
     }
     kotlinOptions {
         jvmTarget = "1.8"
+        freeCompilerArgs += "-opt-in=kotlin.RequiresOptIn"
     }
     buildFeatures {
         compose = true
@@ -111,8 +115,6 @@ dependencies {
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
-    implementation("com.squareup.moshi:moshi:1.12.0")
-    implementation("com.squareup.moshi:moshi-kotlin:1.12.0")
     implementation("com.squareup.okhttp3:okhttp:5.0.0-alpha.3")
     implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.3")
 
@@ -121,4 +123,9 @@ dependencies {
     implementation("androidx.preference:preference-ktx:1.2.1")
 
     implementation("com.google.android.gms:play-services-location:21.3.0")
+
+    // For Kotlin
+    implementation("androidx.work:work-runtime-ktx:2.7.1")
+
+    implementation("io.coil-kt:coil-compose:1.4.0")
 }

@@ -1,6 +1,8 @@
 package com.kshitiz.weatherio.di
 
+import com.kshitiz.weatherio.data.UserPreferencesImpl
 import com.kshitiz.weatherio.data.WeatherRepositoryImpl
+import com.kshitiz.weatherio.domain.UserPreferences
 import com.kshitiz.weatherio.domain.repository.WeatherRepository
 import dagger.Binds
 import dagger.Module
@@ -17,9 +19,21 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 abstract class RepositoryModule {
 
+    /**
+     * Binds WeatherRepository.
+     */
     @Binds
     @Singleton
     abstract fun bindWeatherRepository(
         weatherRepositoryImpl: WeatherRepositoryImpl
     ): WeatherRepository
+
+    /**
+     * Binds user preferences repo.
+     */
+    @Binds
+    @Singleton
+    abstract fun provideUserPreferencesRepository(
+        userPreferencesImpl: UserPreferencesImpl
+    ): UserPreferences
 }

@@ -10,9 +10,20 @@ import com.kshitiz.weatherio.domain.repository.WeatherRepository
 import com.kshitiz.weatherio.domain.util.Resource
 import javax.inject.Inject
 
+/**
+ * Implementation class for weather repository.
+ * Injected constructor params
+ * @param api WeatherIOApi to use the weather apis.
+ */
 class WeatherRepositoryImpl @Inject constructor(
     private val api: WeatherIOApi
 ): WeatherRepository {
+
+    /**
+     * Weather forecast of a location.
+     * @param lat A string representing the latitude of a location.
+     * @param long A string representing the longitude of a location.
+     */
     override suspend fun getWeatherData(lat: Double, long: Double): Resource<WeatherInfo> {
         return try {
             Log.d(
@@ -33,6 +44,10 @@ class WeatherRepositoryImpl @Inject constructor(
         }
     }
 
+    /**
+     * Weather forecast by city
+     * @param city: A String representing a city.
+     */
     override suspend fun getWeatherDataByCity(city: String): Resource<WeatherInfo> {
         return try {
             Log.d(
@@ -57,6 +72,11 @@ class WeatherRepositoryImpl @Inject constructor(
         }
     }
 
+    /**
+     * Current weather data for a location.
+     * @param lat A string representing the latitude of a location.
+     * @param lon A string representing the longitude of a location.
+     */
     override suspend fun getCurrentWeather(
         lat: Double,
         long: Double
@@ -80,6 +100,10 @@ class WeatherRepositoryImpl @Inject constructor(
         }
     }
 
+    /**
+     * Current weather for a city.
+     * @param city: A string which represents a chosen city.
+     */
     override suspend fun getCurrentWeatherByCity(city: String): Resource<CurrentWeatherInfo> {
         return try {
             Resource.Success(

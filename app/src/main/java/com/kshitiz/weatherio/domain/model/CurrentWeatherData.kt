@@ -2,6 +2,9 @@ package com.kshitiz.weatherio.domain.model
 
 import java.time.LocalDateTime
 
+/**
+ * CurrentWeatherData data class.
+ */
 data class CurrentWeatherData(
     val time: LocalDateTime,
     val temperatureFahren: Double,

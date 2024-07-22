@@ -13,10 +13,17 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberImagePainter
 import com.kshitiz.weatherio.domain.model.WeatherData
 import java.time.format.DateTimeFormatter
 import kotlin.math.roundToInt
 
+/**
+ * Composable UI component for displaying Hourly Weather of a current day.
+ * @param weatherData The weekly weather data to show
+ * @param modifier Modifier to customize the view component.
+ * @param textColor Specifies the text color.
+ */
 @Composable
 fun HourlyWeatherDisplay(
     weatherData: WeatherData,
@@ -38,7 +45,7 @@ fun HourlyWeatherDisplay(
             color = Color.LightGray
         )
         Image(
-            painter = painterResource(id = weatherData.weatherType.iconRes),
+            painter = rememberImagePainter(data = weatherData.weatherType.iconUrlDouble),
             contentDescription = null,
             modifier = Modifier.width(40.dp)
         )

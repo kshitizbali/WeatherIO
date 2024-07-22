@@ -31,6 +31,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.kshitiz.weatherio.domain.util.checkInternetAvailability
 import com.kshitiz.weatherio.presentation.ui.WeatherCard
 import com.kshitiz.weatherio.presentation.ui.WeatherForecast
 import com.kshitiz.weatherio.presentation.ui.WeatherSearchBar
@@ -49,11 +50,10 @@ class MainActivity : ComponentActivity() {
         permissionLauncher = registerForActivityResult(
             ActivityResultContracts.RequestMultiplePermissions()
         ) {
-            if (viewModel.checkInternetAvailability(context = this)) {
-                if (viewModel.getLastLocation().isNotEmpty() || viewModel.getLastLocation()
-                        .isNotBlank()
+            if (checkInternetAvailability(context = this)) {
+                if (!viewModel.getLastLocation().isNullOrEmpty()
                 ) {
-                    viewModel.loadWeatherInfoByCity(city = viewModel.getLastLocation())
+                    viewModel.loadWeatherInfoByCity(city = viewModel.getLastLocation()!!)
                 } else {
                     viewModel.loadWeatherInfo()
                 }

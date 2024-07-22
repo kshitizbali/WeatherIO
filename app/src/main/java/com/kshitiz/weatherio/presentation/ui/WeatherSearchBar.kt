@@ -31,8 +31,9 @@ import com.kshitiz.weatherio.R
 import com.kshitiz.weatherio.domain.model.City
 
 /**
- * Implements a search bar which parse the json file from raw folder and displays the list of cities
- * matching the search text. onClickListener also implemented to handle the click on the city.
+ * Composable UI component implements a search bar which parses the json file from raw folder & displays the list of cities
+ * matching the search text. Also has an onClickListener implemented.
+ * @param onCityClick click listener when a city is selected after searching.
  */
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
@@ -83,6 +84,9 @@ fun WeatherSearchBar(onCityClick: (String) -> Unit) {
     }
 }
 
+/**
+ * UI Component text which displays the city suggestion.
+ */
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun CitySuggestion(
@@ -112,7 +116,11 @@ fun PreviewSearchBar() {
     WeatherSearchBar(onCityClick = {})
 }
 
-
+/**
+ * Helper function to parse the json file from the raw folder and create a list of cities.
+ * Can be moved to a Utils class but keeping it here as private to avoid any other class
+ * accessing this.
+ */
 private fun parseJsonFromRawFile(context: Context): List<City> {
     val jsonData = context.resources.openRawResource(R.raw.cities).bufferedReader()
         .use { it.readText() }

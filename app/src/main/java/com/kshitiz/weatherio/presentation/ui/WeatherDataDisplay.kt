@@ -15,7 +15,13 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 
 /**
- * Display the weather data in a row.
+ * Composable UI component to display the weather data in a row.
+ * @param value value of the weather in Integer for ex 69 in 69 degrees temp.
+ * @param unit Unit of the weather value, a String.
+ * @param icon Icon related to the type of weather.
+ * @param modifier A modifier obj to customize the component.
+ * @param textStyle A TextStyle object to customize the text style.
+ * @param iconTint Specifies the tint color of the icon/image.
  */
 @Composable
 fun WeatherDataDisplay(
