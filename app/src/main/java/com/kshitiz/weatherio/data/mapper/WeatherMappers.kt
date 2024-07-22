@@ -12,6 +12,7 @@ import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.ZoneId
+import java.time.ZoneOffset
 import java.time.format.DateTimeFormatter
 
 /**
@@ -22,9 +23,7 @@ fun WeatherCurrentDto.toCurrentWeatherInfo(): CurrentWeatherInfo {
     val weatherType = WeatherType.fromWMO(weatherData.id, weatherData.icon)
     return CurrentWeatherInfo(
         CurrentWeatherData(
-            time = Instant.ofEpochSecond(dateTime)
-                .atZone(ZoneId.systemDefault())
-                .toLocalDateTime(),
+            time = getCurrentLocalTime(dt = dateTime, timezone = timezone),
             temperatureFahren = main.temperature,
             pressure = main.pressure,
             windSpeed = wind.speed,
@@ -74,4 +73,14 @@ private fun convertToWeatherData(index: Int, data: WeatherDataDto): WeatherData 
         humidity = humidity,
         weatherType = WeatherType.fromWMO(weatherCode, weatherIcon)
     )
+}
+
+private fun getCurrentLocalTime(dt: Long, timezone: Int): String {
+    // Convert the Unix timestamp and timezone offset to LocalDateTime
+    val utcTime = LocalDateTime.ofEpochSecond(dt, 0, ZoneOffset.UTC)
+    val localTime = utcTime.plusSeconds(timezone.toLong())
+
+    // Format the local time to a readable string
+    val formatter = DateTimeFormatter.ofPattern("HH:mm")
+    return localTime.format(formatter)
 }

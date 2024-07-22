@@ -14,5 +14,7 @@ data class WeatherCurrentDto(
     @field:Json(name = "sys")
     val system : SysCurrentDto,
     @field:Json(name = "name")
-    val name: String
+    val name: String,
+    @field:Json(name = "timezone")
+    val timezone: Int
 )

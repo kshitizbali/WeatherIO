@@ -21,17 +21,17 @@ sealed class WeatherType(
     val iconUrlQuadruple: String
         get() = WeatherIconUtils.buildIconUrl(iconCode, "@4x")
 
-    object ClearSkyDay : WeatherType("Clear sky", "01d")
-    object ClearSkyNight : WeatherType("Clear sky", "01n")
-    object FewCloudsDay : WeatherType("Few clouds", "02d")
-    object FewCloudsNight : WeatherType("Few clouds", "02n")
-    object ScatteredClouds : WeatherType("Scattered clouds", "03d")
-    object BrokenClouds : WeatherType("Broken clouds", "04d")
-    object ShowerRain : WeatherType("Shower rain", "09d")
-    object Rain : WeatherType("Rain", "10d")
-    object Thunderstorm : WeatherType("Thunderstorm", "11d")
-    object Snow : WeatherType("Snow", "13d")
-    object Mist : WeatherType("Mist", "50d")
+    data object ClearSkyDay : WeatherType("Clear sky", "01d")
+    data object ClearSkyNight : WeatherType("Clear sky", "01n")
+    data object FewCloudsDay : WeatherType("Few clouds", "02d")
+    data object FewCloudsNight : WeatherType("Few clouds", "02n")
+    data object ScatteredClouds : WeatherType("Scattered clouds", "03d")
+    data object BrokenClouds : WeatherType("Broken clouds", "04d")
+    data object ShowerRain : WeatherType("Shower rain", "09d")
+    data object Rain : WeatherType("Rain", "10d")
+    data object Thunderstorm : WeatherType("Thunderstorm", "11d")
+    data object Snow : WeatherType("Snow", "13d")
+    data object Mist : WeatherType("Mist", "50d")
 
     companion object {
         fun fromWMO(code: Int, iconCode: String): WeatherType {

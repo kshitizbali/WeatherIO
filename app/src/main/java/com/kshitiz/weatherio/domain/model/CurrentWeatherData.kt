@@ -6,7 +6,7 @@ import java.time.LocalDateTime
  * CurrentWeatherData data class.
  */
 data class CurrentWeatherData(
-    val time: LocalDateTime,
+    val time: String,
     val temperatureFahren: Double,
     val pressure: Int,
     val windSpeed: Double,
