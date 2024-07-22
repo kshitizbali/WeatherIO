@@ -1,8 +1,5 @@
-package com.kshitiz.weatherio.presentation
+package com.kshitiz.weatherio.presentation.ui
 
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
 import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -13,13 +10,8 @@ import com.kshitiz.weatherio.domain.UserPreferences
 import com.kshitiz.weatherio.domain.location.LocationTracker
 import com.kshitiz.weatherio.domain.repository.WeatherRepository
 import com.kshitiz.weatherio.domain.util.Resource
-import com.kshitiz.weatherio.domain.util.checkInternetAvailability
-import com.kshitiz.weatherio.presentation.ui.CurrentWeatherState
-import com.kshitiz.weatherio.presentation.ui.WeatherState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import kotlin.coroutines.cancellation.CancellationException
 

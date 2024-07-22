@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -43,9 +44,10 @@ fun WeatherCard(
 ) {
     state.weatherInfo?.currentWeatherData?.let { data ->
         Card(
-            //backgroundColor = backgroundColor,
             shape = RoundedCornerShape(10.dp),
-            modifier = modifier.padding(16.dp),
+            modifier = modifier
+                .padding(16.dp)
+                .wrapContentHeight(),
             colors = CardDefaults.cardColors(
                 containerColor = backgroundColor
             )
@@ -67,9 +69,7 @@ fun WeatherCard(
                     )
                     Text(
                         text = "Today ${
-                            data.time.format(
-                                DateTimeFormatter.ofPattern("HH:mm")
-                            )
+                            data.time
                         }",
                         color = Color.White,
                         fontSize = 20.sp
@@ -103,21 +103,21 @@ fun WeatherCard(
                         value = data.pressure,
                         unit = "hpa",
                         icon = ImageVector.vectorResource(id = R.drawable.ic_pressure),
-                        iconTint = Color.Black,
+                        iconTint = Color.White,
                         textStyle = TextStyle(color = Color.White)
                     )
                     WeatherDataDisplay(
                         value = data.humidity,
                         unit = "%",
                         icon = ImageVector.vectorResource(id = R.drawable.ic_drop),
-                        iconTint = Color.Black,
+                        iconTint = Color.White,
                         textStyle = TextStyle(color = Color.White)
                     )
                     WeatherDataDisplay(
                         value = data.windSpeed.roundToInt(),
                         unit = "m/h",
                         icon = ImageVector.vectorResource(id = R.drawable.ic_wind),
-                        iconTint = Color.Black,
+                        iconTint = Color.White,
                         textStyle = TextStyle(color = Color.White)
                     )
                 }

@@ -1,9 +1,6 @@
 package com.kshitiz.weatherio.presentation
 
 import android.Manifest
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -17,24 +14,18 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kshitiz.weatherio.domain.util.checkInternetAvailability
 import com.kshitiz.weatherio.presentation.ui.WeatherCard
 import com.kshitiz.weatherio.presentation.ui.WeatherForecast
 import com.kshitiz.weatherio.presentation.ui.WeatherSearchBar
+import com.kshitiz.weatherio.presentation.ui.WeatherViewModel
 import com.kshitiz.weatherio.presentation.ui.theme.Purple40
 import com.kshitiz.weatherio.presentation.ui.theme.WeatherIOTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -114,29 +105,5 @@ class MainActivity : ComponentActivity() {
     private fun getWeatherDataByCityRequest(cityName: String) {
         viewModel.loadWeatherInfoByCity(city = cityName)
         viewModel.saveLastLocation(location = cityName)
-    }
-
-    @Composable
-    fun CheckInternetConnectivity() {
-        val isConnected = remember { mutableStateOf(false) }
-        val context = LocalContext.current
-
-        val connectivityManager = context.getSystemService(
-            Context.CONNECTIVITY_SERVICE
-        ) as ConnectivityManager
-
-        val networkCapabilities = connectivityManager.activeNetwork ?: return
-
-        val activeNetwork =
-            connectivityManager.getNetworkCapabilities(networkCapabilities) ?: return
-
-        isConnected.value = when {
-            activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-            activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-            activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
-            else -> false
-        }
-
-        // Use the value of isConnected for further processing or UI rendering
     }
 }
