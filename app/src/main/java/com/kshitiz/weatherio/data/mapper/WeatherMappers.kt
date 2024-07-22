@@ -18,6 +18,8 @@ import java.time.format.DateTimeFormatter
  * Converts the [WeatherCurrentDto] to [CurrentWeatherInfo]
  */
 fun WeatherCurrentDto.toCurrentWeatherInfo(): CurrentWeatherInfo {
+    val weatherData = weatherData.first()
+    val weatherType = WeatherType.fromWMO(weatherData.id, weatherData.icon)
     return CurrentWeatherInfo(
         CurrentWeatherData(
             time = Instant.ofEpochSecond(dateTime)
@@ -27,7 +29,7 @@ fun WeatherCurrentDto.toCurrentWeatherInfo(): CurrentWeatherInfo {
             pressure = main.pressure,
             windSpeed = wind.speed,
             humidity = main.humidity,
-            weatherType = WeatherType.fromWMO(weatherData.first().id),
+            weatherType = weatherType,
             name = name
         )
     )
@@ -56,6 +58,7 @@ private fun convertToWeatherData(index: Int, data: WeatherDataDto): WeatherData 
     val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
     val temperature = data.main.temperature
     val weatherCode = data.weather[0].id
+    val weatherIcon = data.weather[0].icon
     val windSpeed = data.wind.speed
     val pressure = data.main.pressure
     val humidity = data.main.humidity
@@ -69,6 +72,6 @@ private fun convertToWeatherData(index: Int, data: WeatherDataDto): WeatherData 
         pressure = pressure,
         windSpeed = windSpeed,
         humidity = humidity,
-        weatherType = WeatherType.fromWMO(weatherCode)
+        weatherType = WeatherType.fromWMO(weatherCode, weatherIcon)
     )
 }

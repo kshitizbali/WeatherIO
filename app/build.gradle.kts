@@ -27,6 +27,7 @@ android {
     val apiKey = gradleLocalProperties(rootDir).getProperty("API_KEY")
     val baseUrl = gradleLocalProperties(rootDir).getProperty("BASE_URL")
     val weatherIOPref = gradleLocalProperties(rootDir).getProperty("WEATHER_IO_PREF")
+    val iconUrl = gradleLocalProperties(rootDir).getProperty("ICON_URL")
 
     buildTypes {
         release {
@@ -34,6 +35,7 @@ android {
             buildConfigField("String", "API_KEY", "\"$apiKey\"")
             buildConfigField("String", "BASE_URL", "\"$baseUrl\"")
             buildConfigField("String", "WEATHER_IO_PREF", "\"$weatherIOPref\"")
+            buildConfigField("String", "ICON_URL", "\"$iconUrl\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -44,6 +46,7 @@ android {
             buildConfigField("String", "API_KEY", "\"$apiKey\"")
             buildConfigField("String", "BASE_URL", "\"$baseUrl\"")
             buildConfigField("String", "WEATHER_IO_PREF", "\"$weatherIOPref\"")
+            buildConfigField("String", "ICON_URL", "\"$iconUrl\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

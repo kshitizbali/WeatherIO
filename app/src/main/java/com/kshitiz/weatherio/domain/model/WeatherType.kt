@@ -2,168 +2,50 @@ package com.kshitiz.weatherio.domain.model
 
 import androidx.annotation.DrawableRes
 import com.kshitiz.weatherio.R
+import com.kshitiz.weatherio.domain.util.WeatherIconUtils
 
 /**
  * Sealed class to organize weather type along with its accompanying
- * icon and description.
+ * icon URL and description.
  */
 sealed class WeatherType(
     val weatherDesc: String,
-    @DrawableRes val iconRes: Int
+    val iconCode: String
 ) {
-    object ThunderStorm : WeatherType(
-        weatherDesc = "ThunderStorm",
-        iconRes = R.drawable.ic_rainythunder
-    )
+    val iconUrl: String
+        get() = WeatherIconUtils.buildIconUrl(iconCode)
 
-    object Drizzle : WeatherType(
-        weatherDesc = "Drizzle",
-        iconRes = R.drawable.ic_rainshower
-    )
+    val iconUrlDouble: String
+        get() = WeatherIconUtils.buildIconUrl(iconCode, "@2x")
 
-    object Rain : WeatherType(
-        weatherDesc = "Rain",
-        iconRes = R.drawable.ic_rainy
-    )
+    val iconUrlQuadruple: String
+        get() = WeatherIconUtils.buildIconUrl(iconCode, "@4x")
 
-    object FreezingRain : WeatherType(
-        weatherDesc = "Freezing Rain",
-        iconRes = R.drawable.ic_snowyrainy
-    )
-
-    object Snow : WeatherType(
-        weatherDesc = "Snow",
-        iconRes = R.drawable.ic_heavysnow
-    )
-
-    object Atmosphere : WeatherType(
-        weatherDesc = "Atmosphere",
-        iconRes = R.drawable.ic_pressure
-    )
-
-    object ClearSky : WeatherType(
-        weatherDesc = "Clear day",
-        iconRes = R.drawable.ic_sunny
-    )
-
-    object FewClouds : WeatherType(
-        weatherDesc = "Few clouds.",
-        iconRes = R.drawable.ic_sunnycloudy
-    )
-
-    object ScatteredClouds : WeatherType(
-        weatherDesc = "Scattered clouds.",
-        iconRes = R.drawable.ic_very_cloudy
-    )
-
-    object BrokenClouds : WeatherType(
-        weatherDesc = "Broken clouds night",
-        iconRes = R.drawable.ic_very_cloudy
-    )
-
-    object OvercastClouds : WeatherType(
-        weatherDesc = "Overcast clouds night",
-        iconRes = R.drawable.ic_very_cloudy
-    )
+    object ClearSkyDay : WeatherType("Clear sky", "01d")
+    object ClearSkyNight : WeatherType("Clear sky", "01n")
+    object FewCloudsDay : WeatherType("Few clouds", "02d")
+    object FewCloudsNight : WeatherType("Few clouds", "02n")
+    object ScatteredClouds : WeatherType("Scattered clouds", "03d")
+    object BrokenClouds : WeatherType("Broken clouds", "04d")
+    object ShowerRain : WeatherType("Shower rain", "09d")
+    object Rain : WeatherType("Rain", "10d")
+    object Thunderstorm : WeatherType("Thunderstorm", "11d")
+    object Snow : WeatherType("Snow", "13d")
+    object Mist : WeatherType("Mist", "50d")
 
     companion object {
-        fun fromWMO(code: Int): WeatherType {
+        fun fromWMO(code: Int, iconCode: String): WeatherType {
             return when (code) {
-                200 -> ThunderStorm
-                201 -> ThunderStorm
-                202 -> ThunderStorm
-                210 -> ThunderStorm
-                211 -> ThunderStorm
-                212 -> ThunderStorm
-                221 -> ThunderStorm
-                230 -> ThunderStorm
-                231 -> ThunderStorm
-                232 -> ThunderStorm
-                300 -> Drizzle
-                301 -> Drizzle
-                302 -> Drizzle
-
-                310 -> Drizzle
-
-                311 -> Drizzle
-
-                312 -> Drizzle
-
-                313 -> Drizzle
-
-                314 -> Drizzle
-
-                321 -> Drizzle
-
-                500 -> Rain
-
-                501 -> Rain
-
-                502 -> Rain
-
-                503 -> Rain
-
-                504 -> Rain
-
-                511 -> FreezingRain
-
-                520 -> Rain
-
-                521 -> Rain
-
-                522 -> Rain
-
-                531 -> Rain
-
-                600 -> Snow
-
-                601 -> Snow
-
-                602 -> Snow
-
-                611 -> Snow
-
-                612 -> Snow
-
-                613 -> Snow
-
-                615 -> Snow
-
-                616 -> Snow
-
-                620 -> Snow
-
-                621 -> Snow
-
-                622 -> Snow
-
-                701 -> Atmosphere
-
-                711 -> Atmosphere
-
-                721 -> Atmosphere
-
-                731 -> Atmosphere
-
-                741 -> Atmosphere
-
-                751 -> Atmosphere
-
-                761 -> Atmosphere
-
-                762 -> Atmosphere
-
-                771 -> Atmosphere
-
-                781 -> Atmosphere
-
-                800 -> ClearSky
-                801 -> FewClouds
+                200, 201, 202, 210, 211, 212, 221, 230, 231, 232 -> Thunderstorm
+                300, 301, 302, 310, 311, 312, 313, 314, 321 -> ShowerRain
+                500, 501, 502, 503, 504, 511, 520, 521, 522, 531 -> Rain
+                600, 601, 602, 611, 612, 613, 615, 616, 620, 621, 622 -> Snow
+                701, 711, 721, 731, 741, 751, 761, 762, 771, 781 -> Mist
+                800 -> if (iconCode.endsWith("n")) ClearSkyNight else ClearSkyDay
+                801 -> if (iconCode.endsWith("n")) FewCloudsNight else FewCloudsDay
                 802 -> ScatteredClouds
-                803 -> BrokenClouds
-                804 -> OvercastClouds
-
-                else -> ClearSky
+                803, 804 -> BrokenClouds
+                else -> ClearSkyDay
             }
         }
     }

@@ -47,7 +47,7 @@ fun WeatherCard(
             shape = RoundedCornerShape(10.dp),
             modifier = modifier.padding(16.dp),
             colors = CardDefaults.cardColors(
-                containerColor = backgroundColor // Set your desired background color here
+                containerColor = backgroundColor
             )
         ) {
             Column(
@@ -78,7 +78,7 @@ fun WeatherCard(
 
                 Spacer(modifier = Modifier.height(16.dp))
                 Image(
-                    painter = painterResource(id = data.weatherType.iconRes),
+                    painter = rememberImagePainter(data = data.weatherType.iconUrlQuadruple),
                     contentDescription = null,
                     modifier = Modifier.width(200.dp)
                 )
@@ -103,21 +103,21 @@ fun WeatherCard(
                         value = data.pressure,
                         unit = "hpa",
                         icon = ImageVector.vectorResource(id = R.drawable.ic_pressure),
-                        iconTint = Color.White,
+                        iconTint = Color.Black,
                         textStyle = TextStyle(color = Color.White)
                     )
                     WeatherDataDisplay(
                         value = data.humidity,
                         unit = "%",
                         icon = ImageVector.vectorResource(id = R.drawable.ic_drop),
-                        iconTint = Color.White,
+                        iconTint = Color.Black,
                         textStyle = TextStyle(color = Color.White)
                     )
                     WeatherDataDisplay(
                         value = data.windSpeed.roundToInt(),
                         unit = "m/h",
                         icon = ImageVector.vectorResource(id = R.drawable.ic_wind),
-                        iconTint = Color.White,
+                        iconTint = Color.Black,
                         textStyle = TextStyle(color = Color.White)
                     )
                 }
