@@ -19,6 +19,7 @@ Welcome to WeatherIO, a small and lightweight weather application developed as a
 - **Moshi**: For JSON parsing.
 - **Dagger-Hilt**: For dependency injection to ensure a scalable and maintainable codebase.
 - **Coil**: To load images efficiently in the app.
+- **Javascript**: A javascript file containing all of the US city names for using in search bar (Hence the project language contains javascript.)
 
 ## Setup and Installation
 
