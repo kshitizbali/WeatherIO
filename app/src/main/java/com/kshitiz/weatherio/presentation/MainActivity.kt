@@ -115,28 +115,4 @@ class MainActivity : ComponentActivity() {
         viewModel.loadWeatherInfoByCity(city = cityName)
         viewModel.saveLastLocation(location = cityName)
     }
-
-    @Composable
-    fun CheckInternetConnectivity() {
-        val isConnected = remember { mutableStateOf(false) }
-        val context = LocalContext.current
-
-        val connectivityManager = context.getSystemService(
-            Context.CONNECTIVITY_SERVICE
-        ) as ConnectivityManager
-
-        val networkCapabilities = connectivityManager.activeNetwork ?: return
-
-        val activeNetwork =
-            connectivityManager.getNetworkCapabilities(networkCapabilities) ?: return
-
-        isConnected.value = when {
-            activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-            activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-            activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
-            else -> false
-        }
-
-        // Use the value of isConnected for further processing or UI rendering
-    }
 }
