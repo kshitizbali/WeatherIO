@@ -26,12 +26,6 @@ class WeatherRepositoryImpl @Inject constructor(
      */
     override suspend fun getWeatherData(lat: Double, long: Double): Resource<WeatherInfo> {
         return try {
-            Log.d(
-                "Bali getWeatherData", "" + api.getWeatherData(
-                    lat = lat,
-                    lon = long
-                )
-            )
             Resource.Success(
                 data = api.getWeatherData(
                     lat = lat,
@@ -50,17 +44,6 @@ class WeatherRepositoryImpl @Inject constructor(
      */
     override suspend fun getWeatherDataByCity(city: String): Resource<WeatherInfo> {
         return try {
-            Log.d(
-                "Bali city", "" + api.getWeatherByCity(
-                    city.plus(",us")
-                )
-            )
-            Log.d(
-                "Bali city", "" + api.getWeatherByCity(
-                    city.plus(",us")
-                ).toWeatherInfo()
-            )
-
             Resource.Success(
                 data = api.getWeatherByCity(
                     city.plus(",us")
@@ -82,12 +65,6 @@ class WeatherRepositoryImpl @Inject constructor(
         long: Double
     ): Resource<CurrentWeatherInfo> {
         return try {
-            Log.d(
-                "Bali getCurrentWeat", "" + api.getCurrentWeatherData(
-                    lat = lat,
-                    lon = long
-                )
-            )
             Resource.Success(
                 data = api.getCurrentWeatherData(
                     lat = lat,
